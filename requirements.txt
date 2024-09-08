@@ -3,5 +3,6 @@ pandas==2.0.3
 numpy==1.23.5
 matplotlib==3.7.1
 seaborn==0.12.2
-flask==2.2.3
+flask==3.0.3
 mlflow==2.6.0
+Werkzeug==3.0.4
