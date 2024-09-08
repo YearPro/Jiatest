@@ -1,0 +1,16 @@
+artifact_uri: file:///C:/Users/jiasu/Desktop/Jiatest/iris_ml/model/mlruns/985117167131602712/383190a2d73b4b83b33a8308b5f37296/artifacts
+deleted_time: 1725804298835
+end_time: 1725803892780
+entry_point_name: ''
+experiment_id: '985117167131602712'
+lifecycle_stage: deleted
+run_id: 383190a2d73b4b83b33a8308b5f37296
+run_name: DecisionTree
+run_uuid: 383190a2d73b4b83b33a8308b5f37296
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725803890685
+status: 3
+tags: []
+user_id: jiasu
