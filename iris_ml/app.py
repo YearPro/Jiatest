@@ -20,8 +20,6 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    # 폼에서 입력받은 데이터를 float으로 변환
-    # 마지막 값은 타겟값이므로 제외하고 특징값 4개만 사용
     features = [float(x) for x in request.form.values()][:4]
     
     # 예측
