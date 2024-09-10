@@ -14,7 +14,7 @@ from fastapi import Request
 app = FastAPI()
 REQUEST_COUNT = Counter("request_count", "Total Request Count", ["method", "endpoint"])
 # Jinja2 템플릿 설정
-templates = Jinja2Templates(directory="../app/templates")
+templates = Jinja2Templates(directory="app/templates")
 
 
 model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'model', 'iris_m_ver_20240908_2306.pkl')
