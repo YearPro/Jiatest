@@ -1,3 +1,5 @@
+fastapi dev main.py
+
 # 1. Python 3.10.11 베이스 이미지 사용
 FROM python:3.10.11-slim
 
