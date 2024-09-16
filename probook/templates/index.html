@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+</head>
+<body>
+    <h1>Search Page</h1>
+
+    
+    <!-- 엘라스틱 search button -->
+    <form action="/es_search" method="get">
+        <input type="text" name="query" placeholder="es Search">
+        <button type="submit">EsSearch</button>
+    </form>
+    
+    <div>
+        {% if results %}
+        <h2>Search Results:</h2>
+        <ul>
+            {% for result in results %}
+            <li>
+                <strong>Book Name:</strong> {{ result.bookname }} <br>
+                <strong>ISBN13:</strong> {{ result.isbn13 }} <br>
+                <strong>Authors:</strong> {{ result.authors }} <br>
+                <strong>Publisher:</strong> {{ result.publisher }} <br>
+                <strong>Publication Year:</strong> {{ result.publication_year }} <br>
+                <strong>Description:</strong> {{ result.description }} <br>
+                <strong>Book Image:</strong> <img src="{{ result.bookimageurl }}" alt="Book Image" width="100"> <br>
+            </li>
+            <br>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
