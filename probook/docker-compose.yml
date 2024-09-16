@@ -9,7 +9,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./probook:/Jiatest/probook  # 호스트의 probook 디렉토리를 컨테이너에 마운트
+      - .:/Jiatest/probook  
     environment:
       - PYTHONPATH=/Jiatest
     networks:
