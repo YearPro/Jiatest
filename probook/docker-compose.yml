@@ -1,23 +1,32 @@
 version: '3'
+
 services:
-  app:
-    build: .
-    container_name: fastapi_app
+  fastapi-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi-app
     ports:
       - "8000:8000"
+    volumes:
+      - ./probook:/Jiatest/probook
+    environment:
+      - PYTHONPATH=/Jiatest
     networks:
-      - app_network
+      - app-network
 
   nginx:
     image: nginx:latest
-    container_name: nginx_proxy
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+    container_name: nginx-proxy
     ports:
       - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - fastapi-app
     networks:
-      - app_network
+      - app-network
 
 networks:
-  app_network:
+  app-network:
     driver: bridge
