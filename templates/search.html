@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동화검색</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .search-container {
+            display: flex;
+            max-width: 500px;
+            width: 100%;
+        }
+        .search-input {
+            flex-grow: 1;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-right: none;
+            border-radius: 24px 0 0 24px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .search-input:focus {
+            border-color: #4285f4;
+        }
+        .search-button {
+            padding: 12px 24px;
+            font-size: 16px;
+            color: white;
+            background-color: #4285f4;
+            border: none;
+            border-radius: 0 24px 24px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-button:hover {
+            background-color: #3367d6;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <form action="/search" method="get">
+            <input type="text" name="query" class="search-input" placeholder="검색어를 입력하세요..." required>
+            <button type="submit" class="search-button">검색</button>
+        </form>
+    </div>
+</body>
+</html>
+

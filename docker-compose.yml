@@ -1,0 +1,20 @@
+services:
+  jiapro:
+    build: .
+    container_name: projia
+    expose:
+      - "8000"  
+    volumes:
+      - ./app:/pbook/app  
+    environment:
+      - PORT=8000
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_server
+    ports:
+      - "80:80"  
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf  
+    depends_on:
+      - jiapro  
