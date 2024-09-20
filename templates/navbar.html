@@ -1,0 +1,11 @@
+<header>
+  <h1>도서관 동화 검색/추천</h1>
+  <nav class="navbar">
+    {% if user %}
+    <a href="/logout">로그아웃</a>
+    {% else %}
+    <a href="/login">로그인</a>
+    <a href="/register">회원가입</a>
+    {% endif %}
+  </nav>
+</header>

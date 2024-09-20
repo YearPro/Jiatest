@@ -85,25 +85,17 @@
     <div class="container">
       <h1>검색 결과</h1>
       <p class="search-query">"{{ query }}"에 대한 검색 결과</p>
-    </div>
-              <div class="results">
-            {% for result in results %}
-                <div class="result-item">
-                    <p><strong>ID:</strong> {{ result['id'] }}</p>
-                    <p><strong>ISBN13:</strong> {{ result['isbn13'] }}</p>
-                    <p><strong>Book Name:</strong> {{ result['bookname'] }}</p>
-                    <p><strong>Authors:</strong> {{ result['authors'] }}</p>
-                    <p><strong>Publisher:</strong> {{ result['publisher'] }}</p>
-                    <p><strong>Publication Year:</strong> {{ result['publication_year'] }}</p>
-                    <p><strong>Description:</strong> {{ result['description'] }}</p>
-                    <p><strong>Book Image URL:</strong></p>
-		    <img src="{{ result['bookimageurl'] }}" alt="Book Image" style="max-width: 200px; height: auto;">
-                </div>
-                <hr>
-            {% endfor %}
-       
-          
-     </div>
+
+      <div class="card-container">
+        {% for item in results %}
+        <div class="card">
+          <div class="card-title">{{ item.title }}</div>
+          <div class="card-description">{{ item.description }}</div>
+        </div>
+        {% else %}
+        <p>검색 결과가 없습니다.</p>
+        {% endfor %}
+      </div>
 
       <a href="/" class="back-link">다시 검색</a>
     </div>

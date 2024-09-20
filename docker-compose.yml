@@ -1,14 +1,33 @@
+version: '3.8'
+
 services:
   jiapro:
-    build: .
+    build: .  # 통합 Dockerfile을 사용하여 빌드
     container_name: projia
     expose:
       - "8000"  
     volumes:
       - ./app:/pbook/app  
     environment:
-      - PORT=8000
+      - SERVICE_TYPE=app  # 기본 서비스 타입
+      - PORT=8000  # 기본 포트
+    ports:
+      - "8000:8000"  # 외부 접근을 위해 포트 매핑 추가
 
+  jiapro-admin:
+    build: .  # 동일한 통합 Dockerfile 사용
+    container_name: projia-admin
+    expose:
+      - "8001"  
+    volumes:
+      - ./admin:/pbook/admin  # 어드민 서비스 경로
+      - ./admin_templates:/pbook/admin_templates  # 템플릿 파일 마운트
+
+    environment:
+      - SERVICE_TYPE=admin  # 어드민 서비스 타입
+      - PORT=8001  # 어드민 페이지 포트
+    ports:
+      - "8001:8001"  # 외부 접근을 위해 포트 매핑 추가
   nginx:
     image: nginx:latest
     container_name: nginx_server
@@ -17,4 +36,5 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf  
     depends_on:
-      - jiapro  
+      - jiapro
+      - jiapro-admin  # 어드민 서비스도 의존성에 추가
