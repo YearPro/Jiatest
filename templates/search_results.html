@@ -1,111 +1,47 @@
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>검색 결과</title>
-    <style>
-      body {
-        font-family: "Roboto", "Arial", sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f8f9fa;
-        color: #202124;
-      }
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 40px 20px;
-      }
-      h1 {
-        font-size: 28px;
-        font-weight: 400;
-        margin-bottom: 20px;
-        color: #1a73e8;
-        text-align: center;
-      }
-      .search-query {
-        font-size: 18px;
-        color: #5f6368;
-        margin-bottom: 30px;
-        text-align: center;
-      }
-      .card-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-      }
-      .card {
-        width: 250px;
-        background-color: #fff;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-        font-size: 16px;
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-      .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-      }
-      .card-title {
-        font-size: 18px;
-        font-weight: 500;
-        color: #1a73e8;
-        margin-bottom: 10px;
-      }
-      .card-description {
-        font-size: 14px;
-        color: #5f6368;
-        margin-bottom: 15px;
-      }
-      a {
-        display: inline-block;
-        margin-top: 20px;
-        color: #1a73e8;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s ease;
-        text-align: center;
-        width: 100%;
-      }
-      a:hover {
-        color: #174ea6;
-      }
-      .back-link {
-        display: block;
-        text-align: center;
-        margin-top: 30px;
-        font-size: 16px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>검색 결과</h1>
-      <p class="search-query">"{{ query }}"에 대한 검색 결과</p>
-    </div>
-              <div class="results">
-            {% for result in results %}
-                <div class="result-item">
-                    <p><strong>ID:</strong> {{ result['id'] }}</p>
-                    <p><strong>ISBN13:</strong> {{ result['isbn13'] }}</p>
-                    <p><strong>Book Name:</strong> {{ result['bookname'] }}</p>
-                    <p><strong>Authors:</strong> {{ result['authors'] }}</p>
-                    <p><strong>Publisher:</strong> {{ result['publisher'] }}</p>
-                    <p><strong>Publication Year:</strong> {{ result['publication_year'] }}</p>
-                    <p><strong>Description:</strong> {{ result['description'] }}</p>
-                    <p><strong>Book Image URL:</strong></p>
-		    <img src="{{ result['bookimageurl'] }}" alt="Book Image" style="max-width: 200px; height: auto;">
-                </div>
-                <hr>
-            {% endfor %}
-       
-          
-     </div>
+{% extends 'base.html' %} {% block title %}동화 검색{% endblock %} {% block
+content %}
+<!-- 검색창 섹션 -->
+<div class="search-section">
+  <div class="search-container">
+    <form
+      action="/es_search"
+      method="get"
+      style="display: flex; width: 100%; align-items: center"
+    >
+      <input
+        type="text"
+        name="query"
+        class="search-input"
+        placeholder="동화를 검색하세요..."
+        value="{{ query }}"
+        required
+      />
+      <button type="submit" class="search-button">검색</button>
+    </form>
+  </div>
+</div>
 
-      <a href="/" class="back-link">다시 검색</a>
+<!-- 검색 결과 섹션 -->
+<div class="card-container">
+  {% if results %} {% for result in results %}
+  <div class="card">
+    <img src="{{ result['bookimageurl'] }}" alt="Book Image" />
+    <div class="card-content">
+      <h2 class="card-title">{{ result['bookname'] }}</h2>
+      <p class="card-authors">{{ result['authors'] }}</p>
+      <p class="card-description">
+        {{ result['description'] | truncate(100) }}
+      </p>
+      <p class="card-publication">
+        출판사: {{ result['publisher'] }}<br />
+        출판년도: {{ result['publication_year'] }}
+      </p>
     </div>
-  </body>
-</html>
+  </div>
+  {% endfor %} {% else %}
+  <p style="text-align: center; font-size: 18px; color: #777">
+    "{{ query }}"에 대한 검색 결과가 없습니다.
+  </p>
+  {% endif %}
+</div>
+{% endblock %}
