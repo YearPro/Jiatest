@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/jiasu/Desktop/Jiatest/iris_ml/model/mlruns/455028871364261098/d95a082b4d4b4737b3ebafc2a44f2832/artifacts
+end_time: 1725804243939
+entry_point_name: ''
+experiment_id: '455028871364261098'
+lifecycle_stage: active
+run_id: d95a082b4d4b4737b3ebafc2a44f2832
+run_name: languid-moose-144
+run_uuid: d95a082b4d4b4737b3ebafc2a44f2832
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725804240988
+status: 3
+tags: []
+user_id: jiasu
